@@ -4,7 +4,7 @@ export default {
     changeToEnglish: 'change to english',
     changeToChinese: 'change to chinese',
     changeToSystem: 'change to System',
-    Chats: 'Chats',
+    ChatList: 'Chats',
     Contact: 'Contact',
     Me: 'Me'
 }

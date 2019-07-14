@@ -3,17 +3,16 @@
 */
 
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import TitleBar from '../Components/TitleBar';
+import I18n from '../I18n';
 
-export default class ContactPage extends Component {
+export default class MatchPage extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-
+                <TitleBar title={I18n.t('Match')} />
             </View>
         )
     }

@@ -16,21 +16,19 @@ import { SwipeListView } from 'react-native-swipe-list-view';
 import TitleBar from '../Components/TitleBar';
 import I18n from '../I18n';
 
-import ContactItem from '../Components/ContactItem';
+import UserItem from '../Components/UserItem';
 
 export default class ChatPage extends Component {
+
+    static navigationOptions = {
+        title: I18n.t('ChatList')
+    }
 
     constructor(props) {
         super(props);
         this.state = {
-            listViewData: Array(20).fill('').map((_, i) => ({ key: `${i}`, text: `item #${i}` })),
-            sectionListData: Array(5).fill('').map((_, i) => ({ title: `title${i + 1}`, data: [...Array(5).fill('').map((_, j) => ({ key: `${i}.${j}`, text: `item #${j}` }))] })),
+            listViewData: Array(5).fill('').map((_, i) => ({ key: `${i}`, text: `item #${i}` })),
         };
-
-        this.rowSwipeAnimatedValues = {};
-        Array(20).fill('').forEach((_, i) => {
-            this.rowSwipeAnimatedValues[`${i}`] = new Animated.Value(0);
-        });
     }
 
     closeRow(rowMap, rowKey) {
@@ -56,36 +54,25 @@ export default class ChatPage extends Component {
         this.setState({ sectionListData: newData });
     }
 
-    onRowDidOpen = (rowKey, rowMap) => {
-        console.log('This row opened', rowKey);
-    }
-
-    onSwipeValueChange = (swipeData) => {
-        const { key, value } = swipeData;
-        this.rowSwipeAnimatedValues[key].setValue(Math.abs(value));
-    }
-
     render() {
         return (
             <View style={styles.container}>
-                <TitleBar title={I18n.t('Chats')} />
+                <TitleBar title={I18n.t('ChatList')} />
                 <SwipeListView
                     useFlatList
                     data={this.state.listViewData}
                     disableRightSwipe={true}
                     renderItem={(data, rowMap) => (
-                        <ContactItem />
+                        <UserItem />
                     )}
                     renderHiddenItem={(data, rowMap) => (
                         <View style={styles.rowBack}>
-                            <TouchableOpacity style={[styles.backRightBtn, styles.backRightBtnRight]} onPress={_ => this.deleteRow(rowMap, data.item.key)}>
+                            <TouchableOpacity style={[styles.backBtn]} onPress={_ => this.deleteRow(rowMap, data.item.key)}>
                                 <Text>{I18n.t('delete')}</Text>
                             </TouchableOpacity>
                         </View>
                     )}
                     rightOpenValue={-75}
-                    onRowDidOpen={this.onRowDidOpen}
-                    onSwipeValueChange={this.onSwipeValueChange}
                 />
             </View>
         )
@@ -128,25 +115,19 @@ const styles = StyleSheet.create({
     },
     rowBack: {
         alignItems: 'center',
-        backgroundColor: '#DDD',
+        backgroundColor: 'red',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingLeft: 15,
     },
-    backRightBtn: {
+    backBtn: {
         alignItems: 'center',
         bottom: 0,
         justifyContent: 'center',
         position: 'absolute',
         top: 0,
-        width: 75
-    },
-    backRightBtnLeft: {
-        backgroundColor: 'blue',
-        right: 75
-    },
-    backRightBtnRight: {
+        width: 75,
         backgroundColor: 'red',
         right: 0
     },
