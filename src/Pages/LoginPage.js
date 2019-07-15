@@ -9,17 +9,13 @@ import {
     Text,
     TextInput,
 } from 'react-native'
-import Icon from '../Icons'
-import Svg, {
-    Path,
-} from 'react-native-svg';
 
 export default class LoginPage extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <Icon icon='logo' style={{ width: 70, height: 70, alignSelf: 'center', marginTop: 30 }} />
+                <View style={{ width: 70, height: 70, alignSelf: 'center', marginTop: 30, backgroundColor: '#777' }} />
                 <TextInput style={styles.name} placeholder={'May账号'} numberOfLines={1} underlineColorAndroid={'transparent'} autoFocus={false} textAlign="center" />
                 <View style={{ height: 1, backgroundColor: '#f4f4f4' }} />
                 <TextInput style={styles.password} placeholder={'密码'} numberOfLines={1} underlineColorAndroid={'transparent'} secureTextEntry={true} textAlign="center" />

@@ -7,7 +7,8 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Text
+    Text,
+    StatusBar,
 } from 'react-native';
 import I18n from '../I18n';
 import TitleBar from '../Components/TitleBar';
@@ -17,76 +18,36 @@ export default class MePage extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TitleBar title={I18n.t('Me')} />
-                <View style={styles.info}>
-                    <View style={styles.left}>
-                        <View style={styles.content}>
-                            <Text>
-                                xxx
-                            </Text>
-                            <Text style={styles.weixinId}>
-                                yyy
-                            </Text>
-                        </View>
-                    </View>
-                    <View style={styles.right}>
-                        <View style={styles.qrcode} />
-                        <View color="#ccc" />
-                    </View>
-                </View>
-                <View style={styles.posts}>
-                    {/* <OneRow
-                        iconName="photo"
-                        text="My Posts"
-                        handlePress={() => {
-                            navigate('Posts', { name, id })
-                        }}
-                    /> */}
-                </View>
+                <View style={styles.headimg}><Text>头像</Text></View>
+                <View style={styles.button}><Text>按钮1</Text></View>
+                <View style={styles.button}><Text>按钮2</Text></View>
+                <View style={styles.button}><Text>按钮3</Text></View>
+                <View style={styles.button}><Text>按钮4</Text></View>
+                <View style={styles.button}><Text>按钮5</Text></View>
             </View>
         )
     }
 }
 
+var Dimensions = require('Dimensions');
+var HeadImgWidth = Dimensions.get('window').width * 0.65;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#bbbbbb'
+        backgroundColor: '#FFF'
     },
-    info: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        padding: 10,
-        marginTop: 12
-      },
-      left: {
-        flexDirection: 'row',
-      },
-      right: {
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-      },
-      posts: {
-        marginTop: 20,
-        justifyContent: 'center',
-        flexDirection: 'row',
-        alignItems: 'center'
-      },
-      qrcode: {
-        marginRight: 6,
-      },
-      content: {
-        paddingLeft: 10,
-        flex: 1,
-        display: 'flex',
-      },
-      weixinId: {
-        fontSize: 12,
-        color: '#333',
-        paddingTop: 10,
-      },
+    headimg: {
+        alignSelf: 'center',
+        width: HeadImgWidth,
+        height: HeadImgWidth,
+        borderRadius: HeadImgWidth * 0.5,
+        backgroundColor: '#BBB',
+        marginTop: StatusBar.currentHeight + 10,
+        marginBottom :10
+    },
+    button:{
+        height: 50,
+        backgroundColor: '#BBB',
+    }
 })

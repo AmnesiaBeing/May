@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 import {
     StyleSheet,
     View,
-    Text
+    Text,
+    StatusBar
 } from 'react-native';
 
 export default class TitleBar extends Component {
@@ -23,9 +24,9 @@ export default class TitleBar extends Component {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: "#4a9df8",
-        height: 50,
-        flexDirection: "row",
-        alignItems: "center"
+        height: 50 + StatusBar.currentHeight,
+        alignItems: "center",
+        flexDirection: 'row'
     },
     headerTitle: {
         // 不想写样式

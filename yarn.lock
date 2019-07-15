@@ -5230,11 +5230,6 @@ react-native-splash-screen@^3.2.0:
   resolved "https://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
   integrity sha1-1H7IVXsbqYjuPqmNAUYwgbYP/0U=
 
-react-native-svg@^9.5.1:
-  version "9.5.1"
-  resolved "https://registry.npm.taobao.org/react-native-svg/download/react-native-svg-9.5.1.tgz#eb21fa7eb5d71649620541e6549c6ed425d80240"
-  integrity sha1-6yH6frXXFkliBUHmVJxu1CXYAkA=
-
 react-native-swipe-list-view@^1.5.8:
   version "1.5.8"
   resolved "https://registry.npm.taobao.org/react-native-swipe-list-view/download/react-native-swipe-list-view-1.5.8.tgz#1da75ed9eb8216c9bb401ee0a3c781e8cdc56093"
