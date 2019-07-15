@@ -23,7 +23,8 @@ export default class MePage extends Component {
                 <View style={styles.button}><Text>按钮2</Text></View>
                 <View style={styles.button}><Text>按钮3</Text></View>
                 <View style={styles.button}><Text>按钮4</Text></View>
-                <View style={styles.button}><Text>按钮5</Text></View>
+                <View style={styles.button}><Text>按钮5
+                    </Text></View>
             </View>
         )
     }
