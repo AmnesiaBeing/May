@@ -35,19 +35,19 @@ var HeadImgWidth = Dimensions.get('window').width * 0.3;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#FFD39B'
+        backgroundColor: '#fff'
     },
     headimg: {
         alignSelf: 'center',
         width: HeadImgWidth,
         height: HeadImgWidth,
         borderRadius: HeadImgWidth * 0.5,
-        backgroundColor: '#FFA54F',
+        backgroundColor: '#FFDAB9',
         marginTop: StatusBar.currentHeight +45,
         marginBottom :25
     },
     button:{
         height:50,
-        backgroundColor: '#BBB',
+        backgroundColor: '#FFEBCD',
     }
 })

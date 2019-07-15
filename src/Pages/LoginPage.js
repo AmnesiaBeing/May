@@ -29,13 +29,13 @@ export default class LoginPage extends Component {
                 <ImageBackground style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').height }} source={require('../../img/loginbgimage.jpg')} resizeMode='cover'>
                     <Image style={{ width: 80, height: 80, alignSelf: 'center', marginTop: 150 }}
                         source={require('../../img/logo.png')} />
-                    <TextInput style={styles.name} placeholder={'May账号'} numberOfLines={1} underlineColorAndroid={'transparent'} autoFocus={false} textAlign="center" />
+                    <TextInput style={styles.name} placeholder={'MayID'} numberOfLines={1} underlineColorAndroid={'transparent'} autoFocus={false} textAlign="center" />
                     <View style={{ height: 3, }} />
                     <TextInput style={styles.password} placeholder={'密码'} numberOfLines={1} underlineColorAndroid={'transparent'} secureTextEntry={true} textAlign="center" />
                     <View style={styles.login}>
                         <Text>登录</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', marginTop: 13, alignItems: 'flex-end' }}>
+                    <View style={{ flexDirection: 'row', marginTop: 5, alignItems: 'flex-end' }}>
                         <Text style={{ marginLeft: 10, color: '#000', fontSize: 14 }}> 忘记密码？ </Text>
                         <Text style={{ marginRight: 10, color: '#000', alignItems: 'flex-end', textAlign: 'right', flex: 1, fontSize: 14 }}> 新用户注册 </Text>
                     </View>
