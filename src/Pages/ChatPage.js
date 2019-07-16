@@ -10,7 +10,8 @@ import {
     Text,
     TouchableOpacity,
     TouchableHighlight,
-    View
+    View,
+    Image
 } from 'react-native';
 import { SwipeListView } from 'react-native-swipe-list-view';
 import TitleBar from '../Components/TitleBar';
@@ -58,6 +59,7 @@ export default class ChatPage extends Component {
         return (
             <View style={styles.container}>
                 <TitleBar title={I18n.t('ChatList')} />
+                <View style={{ height: 2, backgroundColor:"#CCCCCC"}} /> 
                 <SwipeListView
                     useFlatList
                     data={this.state.listViewData}
