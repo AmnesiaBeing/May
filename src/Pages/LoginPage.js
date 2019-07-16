@@ -14,8 +14,16 @@ import {
     StatusBar,
     TouchableOpacity
 } from 'react-native'
+import SplashScreen from 'react-native-splash-screen';
 
 export default class LoginPage extends Component {
+    static navigationOptions = {
+        header: null,
+    }
+    componentDidMount() {
+        //2秒后关闭启动页
+        setTimeout(() => { SplashScreen.hide() }, 2000)
+    };
 
     static navigationOptions = {
         header: null,

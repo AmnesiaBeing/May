@@ -82,7 +82,7 @@ export default class ChatPage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#abcdef'
+        backgroundColor: '#fff'
     },
     standalone: {
         marginTop: 30,
@@ -90,13 +90,13 @@ const styles = StyleSheet.create({
     },
     standaloneRowFront: {
         alignItems: 'center',
-        backgroundColor: '#CCC',
+        backgroundColor: '#fff',
         justifyContent: 'center',
         height: 50,
     },
     standaloneRowBack: {
         alignItems: 'center',
-        backgroundColor: '#8BC645',
+        backgroundColor: '#fff',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',

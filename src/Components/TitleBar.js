@@ -23,7 +23,7 @@ export default class TitleBar extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        backgroundColor: "#4a9df8",
+        backgroundColor: "#EE9A49",
         height: 50 + StatusBar.currentHeight,
         alignItems: "center",
         flexDirection: 'row'
