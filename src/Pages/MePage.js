@@ -11,10 +11,9 @@ import {
     StatusBar,
     TouchableHighlight,
     TouchableOpacity,
-    AsyncStorage
 } from 'react-native';
 import I18n from '../I18n';
-import TitleBar from '../Components/TitleBar';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class MePage extends Component {
 

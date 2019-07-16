@@ -11,19 +11,16 @@ import ChatListPage from './Pages/ChatListPage';
 import LoginPage from './Pages/LoginPage';
 import MatchPage from './Pages/MatchPage';
 import MePage from './Pages/MePage';
+import ChatPage from './Pages/ChatPage';
 import SplashScreen from 'react-native-splash-screen';
-import { View, AsyncStorage, } from 'react-native';
+import { View, } from 'react-native';
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import AsyncStorage from '@react-native-community/async-storage';
 
-const ChatIconWithBadge = props => {
-    // You should pass down the badgeCount in some other ways like context, redux, mobx or event emitters.
-    return <IconWithBadge {...props} badgeCount={3} />;
-};
-
-const AppStack = createBottomTabNavigator(
+const MainStack = createBottomTabNavigator(
     {
-        Chat: { screen: ChatListPage },
+        ChatList: { screen: ChatListPage },
         Match: { screen: MatchPage },
         Me: { screen: MePage },
     },
@@ -33,7 +30,7 @@ const AppStack = createBottomTabNavigator(
                 const { routeName } = navigation.state;
                 let IconComponent = Icon;
                 let iconName;
-                if (routeName === 'Chat') {
+                if (routeName === 'ChatList') {
                     iconName = `chat`;
                 }
                 else if (routeName === 'Match') {
@@ -50,6 +47,19 @@ const AppStack = createBottomTabNavigator(
             activeTintColor: 'tomato',
             inactiveTintColor: 'gray',
         },
+        backBehavior: false,
+    }
+);
+
+const AppStack = createStackNavigator(
+    {
+        Main: MainStack,
+        Chat: ChatPage,
+        // Setting: SettingPage,
+    },
+    {
+        initialRouteName: 'Main',
+        headerMode: 'none'
     }
 );
 
@@ -64,10 +74,10 @@ class AuthLoadingScreen extends Component {
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
-        SplashScreen.hide();
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         this.props.navigation.navigate(userToken ? 'App' : 'Auth');
+        SplashScreen.hide();
     };
 
     // Render any loading content that you like here
@@ -88,5 +98,6 @@ export default createAppContainer(createSwitchNavigator(
     },
     {
         initialRouteName: 'AuthLoading',
+        headerMode: 'none'
     }
 ));
