@@ -13,9 +13,8 @@ import {
     Dimensions,
     StatusBar,
     TouchableOpacity,
-    AsyncStorage
 } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class LoginPage extends Component {
     static navigationOptions = {

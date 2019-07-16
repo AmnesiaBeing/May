@@ -1,5 +1,6 @@
 /*
-    “会话”页面，简单点就够了
+    “会话列表”页面
+    使用了rn-swipe-list-view，但是会报警告，要不就不用了？
 */
 
 import React, { Component } from 'react';
@@ -18,6 +19,7 @@ import TitleBar from '../Components/TitleBar';
 import I18n from '../I18n';
 
 import UserItem from '../Components/UserItem';
+import { TouchableNativeFeedback } from 'react-native-gesture-handler';
 
 export default class ChatListPage extends Component {
 
@@ -55,6 +57,11 @@ export default class ChatListPage extends Component {
         this.setState({ sectionListData: newData });
     }
 
+    onChatPress(rowMap, rowKey)
+    {
+        this.props.navigation.navigate('Chat');
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -65,7 +72,9 @@ export default class ChatListPage extends Component {
                     data={this.state.listViewData}
                     disableRightSwipe={true}
                     renderItem={(data, rowMap) => (
-                        <UserItem />
+                        <TouchableNativeFeedback onPress={_ => this.onChatPress(rowMap, data.item.key)}>
+                            <UserItem />
+                        </TouchableNativeFeedback>
                     )}
                     renderHiddenItem={(data, rowMap) => (
                         <View style={styles.rowBack}>
