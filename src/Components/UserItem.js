@@ -50,8 +50,8 @@ const styles = StyleSheet.create({
         height: 60,
         alignSelf: 'center',
         marginStart: 5,
-        borderRadius: 5,
-        backgroundColor: '#ABC',
+        borderRadius:40,
+        backgroundColor: '#EECBAD',
     },
     main: {
         paddingLeft: 10,
