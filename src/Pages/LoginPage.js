@@ -12,27 +12,21 @@ import {
     ImageBackground,
     Dimensions,
     StatusBar,
-    TouchableOpacity
-} from 'react-native'
+    TouchableOpacity,
+    AsyncStorage
+} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 
 export default class LoginPage extends Component {
     static navigationOptions = {
         header: null,
     }
-    componentDidMount() {
-        //2秒后关闭启动页
-        setTimeout(() => { SplashScreen.hide() }, 2000)
-    };
 
-    static navigationOptions = {
-        header: null,
-    }
-
-    _btnLoginPress(){
+    _btnLoginPress = async () => {
         // 网络请求什么的，验证，然后跳转到主界面
+        await AsyncStorage.setItem('userToken', 'abc');
         this.props.navigation.navigate('App');
-    }
+    };
 
     render() {
         return (

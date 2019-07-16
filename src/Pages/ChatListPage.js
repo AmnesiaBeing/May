@@ -18,7 +18,7 @@ import I18n from '../I18n';
 
 import UserItem from '../Components/UserItem';
 
-export default class ChatPage extends Component {
+export default class ChatListPage extends Component {
 
     static navigationOptions = {
         title: I18n.t('ChatList')

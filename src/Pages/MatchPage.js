@@ -9,6 +9,10 @@ import I18n from '../I18n';
 
 export default class MatchPage extends Component {
 
+    static navigationOptions = {
+        title: I18n.t('Match')
+    }
+
     render() {
         return (
             <View style={styles.container}>
