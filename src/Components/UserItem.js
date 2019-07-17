@@ -3,29 +3,23 @@
 */
 
 import React, { Component } from 'react';
-import {
-    Animated,
-    Dimensions,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    TouchableHighlight,
-    View,
-    Image
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+// import IconWithBadge from './IconWithBadge';
+import Theme from '../Theme';
 
 export default class UserItem extends Component {
 
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.headportrait}></View>
-                <View style={styles.main}>
-                    <View style={styles.content}>
-                        <Text style={styles.name}>名字</Text>
-                        <Text style={styles.message}>哈哈</Text>
-                    </View>
-                    <Text style={styles.time}>时间</Text>
+                <View style={styles.headimg}></View>
+                <View style={{ flex: 1, justifyContent: 'space-between', marginLeft: 5 }}>
+                    <Text style={styles.name}>名字</Text>
+                    <Text style={styles.message}>哈哈哈哈哈哈哈哈</Text>
+                </View>
+                <View style={{ justifyContent: 'space-between' }}>
+                    <Text style={styles.time}>2019-07-17</Text>
+                    {/* {} */}
                 </View>
             </View>
         )
@@ -36,46 +30,27 @@ const styles = StyleSheet.create({
     // 容器，分成左中右三个部分，flex布局，方向为横向
     container: {
         flexDirection: 'row',
-        borderBottomColor: '#ccc',
-        backgroundColor: '#fff',
+        height: Theme.values.UserItemHeight,
+        backgroundColor: Theme.colors.UserItemBG,
+        borderBottomColor: '#CCC',
         borderBottomWidth: 1,
-        borderStyle: 'solid',
-        paddingTop: 10,
-        paddingBottom: 10,
-        height: 70,
+        padding: 5
     },
     // 头像在左边，高度宽度固定
-    headportrait: {
-        width: 60,
-        height: 60,
+    headimg: {
         alignSelf: 'center',
-        marginStart: 5,
-        borderRadius:40,
+        width: Theme.values.UserItemImgWidth,
+        height: Theme.values.UserItemImgWidth,
+        borderRadius: Theme.values.UserItemImgRadius,
         backgroundColor: '#EECBAD',
     },
-    main: {
-        paddingLeft: 10,
-        paddingTop: 2,
-        paddingBottom: 2,
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-    },
-    content: {
-        flex: 1,
-        justifyContent: 'center',
-    },
     name: {
-        fontSize: 14,
-        flex: 1,
+        fontSize: Theme.values.UserItemNameFontSize,
     },
     message: {
-        fontSize: 12,
-        color: '#333',
+        fontSize: Theme.values.UserItemMsgFontSize,
     },
     time: {
-        fontSize: 10,
-        textAlign: 'right',
-        color: '#333',
+        fontSize: Theme.values.UserItemTimeFontSize,
     },
 })

@@ -5,18 +5,19 @@
     2、如果当前已经登陆过了，则直接显示主界面，如果没有，显示Login界面。
 */
 
-// import SplashScreen from 'react-native-splash-screen';
+import AsyncStorage from '@react-native-community/async-storage';
+import React, { Component } from 'react';
+import { Image, StatusBar, View } from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createAppContainer, createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import ChatListPage from './Pages/ChatListPage';
+import ChatPage from './Pages/ChatPage';
 import LoginPage from './Pages/LoginPage';
 import MatchPage from './Pages/MatchPage';
 import MePage from './Pages/MePage';
-import ChatPage from './Pages/ChatPage';
-import SplashScreen from 'react-native-splash-screen';
-import { View, } from 'react-native';
-import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import AsyncStorage from '@react-native-community/async-storage';
+import Theme from './Theme';
+
 
 const MainStack = createBottomTabNavigator(
     {
@@ -44,8 +45,8 @@ const MainStack = createBottomTabNavigator(
             }
         }),
         tabBarOptions: {
-            activeTintColor: 'tomato',
-            inactiveTintColor: 'gray',
+            activeTintColor: Theme.colors.BottomTabBarActive,
+            inactiveTintColor: Theme.colors.BottomTabBarInactive,
         },
         backBehavior: false,
     }
@@ -68,6 +69,10 @@ const AuthStack = createStackNavigator({ SignIn: LoginPage });
 class AuthLoadingScreen extends Component {
     constructor() {
         super();
+        // MainActivity中也有类似的代码
+        StatusBar.setBackgroundColor('#00000000');
+        StatusBar.setTranslucent(true);
+        StatusBar.setBarStyle(Theme.values.StatusBarStyle);
         this._bootstrapAsync();
     }
 
@@ -80,12 +85,9 @@ class AuthLoadingScreen extends Component {
         SplashScreen.hide();
     };
 
-    // Render any loading content that you like here
     render() {
         return (
-            // 以后可能要在这个地方做SplashScreen，从现在的效果来看，现有的react-native-splash-screen效果有点差
-            <View>
-            </View>
+            <View></View>
         );
     }
 }

@@ -5221,6 +5221,11 @@ react-native-i18n@^2.0.15:
   dependencies:
     i18n-js "3.0.11"
 
+react-native-linear-gradient@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.npm.taobao.org/react-native-linear-gradient/download/react-native-linear-gradient-2.5.4.tgz#dce133526f5a5510a639af94544f1ed0c984bd1e"
+  integrity sha1-3OEzUm9aVRCmOa+UVE8e0MmEvR4=
+
 react-native-safe-area-view@^0.14.1:
   version "0.14.6"
   resolved "https://registry.npm.taobao.org/react-native-safe-area-view/download/react-native-safe-area-view-0.14.6.tgz#9a9d37d9f8f3887d60c4076eae7b5d2319539446"
@@ -5239,11 +5244,6 @@ react-native-splash-screen@^3.2.0:
   version "3.2.0"
   resolved "https://registry.npm.taobao.org/react-native-splash-screen/download/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
   integrity sha1-1H7IVXsbqYjuPqmNAUYwgbYP/0U=
-
-react-native-swipe-list-view@^1.5.8:
-  version "1.5.8"
-  resolved "https://registry.npm.taobao.org/react-native-swipe-list-view/download/react-native-swipe-list-view-1.5.8.tgz#1da75ed9eb8216c9bb401ee0a3c781e8cdc56093"
-  integrity sha1-Hade2euCFsm7QB7go8eB6M3FYJM=
 
 react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   version "1.4.1"

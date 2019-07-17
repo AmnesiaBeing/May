@@ -3,54 +3,25 @@
 */
 
 import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    StatusBar,
-    Image,
-    Dimensions
-} from 'react-native';
+import { StatusBar, StyleSheet, Text, View } from 'react-native';
+import Theme from '../Theme';
 
 export default class TitleBar extends Component {
 
     render() {
         return (
-            
-            <View style={styles.header}>
-                <Image style={styles.headerImage}
-                    source={require('../../img/may.png')} /> 
-               
-                
-            </View>
-                
+            <View style={{ backgroundColor: Theme.colors.TitleBarBG }}>
+                <View style={{ height: Theme.values.TitleBarHeight, marginTop: StatusBar.currentHeight }}>
+                    <Text style={{
+                        color: Theme.colors.TitleBarText,
+                        fontSize: Theme.values.TitleBarTextSize,
+                        marginLeft: Theme.values.TitleBarTextMargin,
+                    }}>{this.props.title}</Text>
+                </View>
+                <View style={{ backgroundColor: Theme.colors.TitleBarSplitBG, height: 2, }} />
+            </View >
+
         )
-        
+
     }
 }
-
-const styles = StyleSheet.create({
-    header: {
-        backgroundColor: "#fff",
-        height: 35+ StatusBar.currentHeight,
-        alignItems: "center",
-        flexDirection: 'row'
-    },
-    headerTitle: {
-        alignSelf: 'center',
-        justifyContent: 'center', 
-        marginTop:30,
-        marginLeft:50
-    },
-    headerImage:{
-        
-        width:30, 
-        height:30, 
-        alignItems: 'center', 
-        marginTop: 20 ,
-        justifyContent:'center',
-        marginLeft:190,
-        
-
-    }
-})

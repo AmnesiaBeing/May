@@ -14,7 +14,8 @@ import {
     View,
     KeyboardAvoidingView,
     ScrollView,
-    PixelRatio
+    PixelRatio,
+    FlatList
 } from 'react-native';
 import TitleBar from '../Components/TitleBar';
 import I18n from '../I18n';
@@ -26,6 +27,7 @@ export default class ChatPage extends Component {
 
     constructor(props) {
         super(props);
+        his.state = { flatlistHeight: 0 };
     }
 
     _onChange(event) {
@@ -38,9 +40,19 @@ export default class ChatPage extends Component {
                 <TitleBar title={I18n.t('ChatList')} />
                 <KeyboardAvoidingView
                     behavior='position' contentContainerStyle={{ flex: 1 }} style={{ flex: 1 }}>
-                    <ScrollView>
-                        {/* 这里应该查询数据库，然后看看需要渲染些什么东西，目前就凑合一下 */}
-                    </ScrollView>
+                    <FlatList
+                        style={styles.container}
+                        data={[{ key: 'a' }, { key: 'b' }]}
+                        renderItem={({ item }) =>
+                            <View></View>
+                        }
+                        onLayout={e => {
+                            let height = e.nativeEvent.layout.height;
+                            if (this.state.flatlistHeight < height) {
+                                this.setState({ flatlistHeight: height })
+                            }
+                        }}
+                    />
                     <View style={{
                         bottom: 0,
                         backgroundColor: '#ABC',
@@ -55,7 +67,7 @@ export default class ChatPage extends Component {
                             maxHeight={120}
                             enableScrollToCaret
                         />
-                        <Icon style={{ alignSelf: 'center'}} name='face' size={35} color='#FFF' />
+                        <Icon style={{ alignSelf: 'center' }} name='face' size={35} color='#FFF' />
                         <Icon style={{ alignSelf: 'center', marginLeft: 2 }} name='voice' size={35} color='#FFF' />
                     </View>
                 </KeyboardAvoidingView>

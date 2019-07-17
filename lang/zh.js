@@ -9,4 +9,5 @@ export default {
     Me: '我',
     delete: '删除',
     Match: '匹配',
+    GotoMatch: '前往匹配页面'
 }
