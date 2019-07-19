@@ -9,5 +9,13 @@ export default {
     Me: '我',
     delete: '删除',
     Match: '匹配',
-    GotoMatch: '前往匹配页面'
+    GotoMatch: '前往匹配页面',
+    Login: '登录',
+    SignIn: '注册',
+    UsernameTint: 'May账号',
+    PasswordTint: 'May密码',
+    ForgetPassword: '忘记密码？',
+
+    EmptyUsername: '用户名为空',
+    EmptyPassword: '密码为空',
 }

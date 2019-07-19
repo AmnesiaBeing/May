@@ -7,17 +7,17 @@
 
 import AsyncStorage from '@react-native-community/async-storage';
 import React, { Component } from 'react';
-import { Image, StatusBar, View } from 'react-native';
+import { StatusBar, View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createAppContainer, createBottomTabNavigator, createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import ChatListPage from './Pages/ChatListPage';
 import ChatPage from './Pages/ChatPage';
 import LoginPage from './Pages/LoginPage';
+import SignInPage from './Pages/SignInPage';
 import MatchPage from './Pages/MatchPage';
 import MePage from './Pages/MePage';
 import Theme from './Theme';
-
 
 const MainStack = createBottomTabNavigator(
     {
@@ -64,7 +64,10 @@ const AppStack = createStackNavigator(
     }
 );
 
-const AuthStack = createStackNavigator({ SignIn: LoginPage });
+const AuthStack = createStackNavigator({
+    Login: LoginPage,
+    SignIn: SignInPage
+});
 
 class AuthLoadingScreen extends Component {
     constructor() {
@@ -78,7 +81,7 @@ class AuthLoadingScreen extends Component {
 
     // Fetch the token from storage then navigate to our appropriate place
     _bootstrapAsync = async () => {
-        const userToken = await AsyncStorage.getItem('userToken');
+        const userToken = await AsyncStorage.getItem('username');
         // This will switch to the App screen or Auth screen and this loading
         // screen will be unmounted and thrown away.
         this.props.navigation.navigate(userToken ? 'App' : 'Auth');
