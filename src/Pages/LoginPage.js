@@ -7,13 +7,9 @@ import React, { Component } from 'react';
 import { Dimensions, Image, ImageBackground, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import I18n from '../I18n';
 
-import XMPP from 'react-native-xmpp';
-
 import { WToast } from 'react-native-smart-tip';
 
-// 仅用于测试
-const hostname = '2001:250:217:7220::f783';
-
+import { xmppstore } from '../Stores';
 
 export default class LoginPage extends Component {
     static navigationOptions = {
@@ -44,44 +40,24 @@ export default class LoginPage extends Component {
             WToast.show(toast);
             return;
         }
-        this.login();
+        // this.login();
+        xmppstore.login(this.state.username, this.state.password);
     };
 
     _btnSignInPress = () => {
         this.props.navigation.navigate('SignIn');
     };
 
-
-    async onLogin() {
-        await AsyncStorage.setItem('username', this.state.username);
-        this.props.navigation.navigate('App');
-    }
-
-    _onLoginError = (data) => {
-        const toast = {
-            data: '？？？',
-            duration: WToast.duration.SHORT,
-            position: WToast.position.TOP,
-        }
-
-        WToast.show(toast)
-    }
-
     // 初始化函数，这个函数的内容想办法用一个Helper包起来，语法现在还是不熟悉
     constructor(props) {
         super(props);
 
-        XMPP.on('loginError', this._onLoginError);
-        XMPP.on('login', this.onLogin);
-
         this.state = {
             username: '',
             password: '',
+            isConnected: xmppstore.isConnected,
+            isOnline: xmppstore.isOnline,
         }
-    }
-
-    login() {
-        XMPP.connect(this.state.username + '@' + hostname, this.state.password);
     }
 
     render() {

@@ -27,7 +27,7 @@ export default class ChatPage extends Component {
 
     constructor(props) {
         super(props);
-        his.state = { flatlistHeight: 0 };
+        this.state = { flatlistHeight: 0 };
     }
 
     _onChange(event) {
@@ -41,7 +41,7 @@ export default class ChatPage extends Component {
                 <KeyboardAvoidingView
                     behavior='position' contentContainerStyle={{ flex: 1 }} style={{ flex: 1 }}>
                     <FlatList
-                        style={styles.container}
+                        style={styles.chatflatlist}
                         data={[{ key: 'a' }, { key: 'b' }]}
                         renderItem={({ item }) =>
                             <View></View>
@@ -59,16 +59,31 @@ export default class ChatPage extends Component {
                         flexDirection: 'row'
                     }}>
                         <Icon style={{ alignSelf: 'center', marginLeft: 2 }} name='plus' size={35} color='#FFF' />
-                        <AutoGrowingTextInput
-                            // onChange={(event) => this._onChange(event)}
-                            style={styles.textInput}
-                            placeholder={'Your Message'}
-                            placeholderTextColor='#66737C'
-                            maxHeight={120}
-                            enableScrollToCaret
+                        <TextInput
+                            style={[styles.input, {
+                                height: Math.max(40, this.state.textInputHeight < 180 ? this.state.textInputHeight : 180)
+                            }]}
+                            multiline={true}
+                            controlled={true}
+                            underlineColorAndroid="transparent"
+                            returnKeyType="default"
+                            value={this.state.inputValue}
+                            placeholder="Type here to send message"
+                            // ios only
+                            enablesReturnKeyAutomatically={true}
+                            onContentSizeChange={
+                                (event) => {
+                                    this.setState({ textInputHeight: event.nativeEvent.contentSize.height });
+                                }
+                            }
+                            onChangeText={(text) => {
+                                this.setState({ inputValue: text });
+                            }}
                         />
+                        {/* emoji按钮 */}
                         <Icon style={{ alignSelf: 'center' }} name='face' size={35} color='#FFF' />
-                        <Icon style={{ alignSelf: 'center', marginLeft: 2 }} name='voice' size={35} color='#FFF' />
+                        {/* 当没有输入东西的时候，这个按钮是切换发送文字或者语音的 */}
+                        <Icon style={{ alignSelf: 'center', marginLeft: 2 }} name={this.state.inputValue ? 'voice' : 'up'} size={35} color='#FFF' />
                     </View>
                 </KeyboardAvoidingView>
 
@@ -77,86 +92,86 @@ export default class ChatPage extends Component {
     }
 }
 
+class MessageCell extends Component {
+    render() {
+        let { currentUser, message } = this.props;
+
+        let differentStyle = {};
+        if (message.from === currentUser) {
+            differentStyle = {
+                flexDirection: 'row-reverse',
+                backgroundColor: '#92E649'
+            };
+        } else {
+            differentStyle = {
+                flexDirection: 'row',
+                backgroundColor: '#FFFFFF'
+            };
+        }
+
+        return (
+            <View
+                style={[styles.messageCell, { flexDirection: differentStyle.flexDirection }]}
+            >
+                <Image
+                    source={{
+                        uri: message.ext.avatar
+                    }}
+                    style={styles.avatar}
+                />
+                <View
+                    style={[styles.contentView, { backgroundColor: differentStyle.backgroundColor }]}
+                >
+                    <Text style={styles.messageCellText}>{message.msg.content}</Text>
+                </View>
+                <View style={styles.endBlankBlock} />
+            </View>
+        );
+    }
+}
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff'
     },
-    standalone: {
-        marginTop: 30,
-        marginBottom: 30,
-    },
-    standaloneRowFront: {
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        justifyContent: 'center',
-        height: 50,
-    },
-    standaloneRowBack: {
-        alignItems: 'center',
-        backgroundColor: '#fff',
-        flex: 1,
+    bottomToolBar: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        padding: 15
-    },
-    backTextWhite: {
-        color: '#FFF'
-    },
-    rowFront: {
         alignItems: 'center',
-        backgroundColor: '#CCC',
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        justifyContent: 'center',
-        height: 50,
+        borderTopWidth: 1,
+        borderTopColor: '#AAA'
     },
-    rowBack: {
-        alignItems: 'center',
-        backgroundColor: 'red',
+    input: {
         flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingLeft: 15,
+        color: '#000',
+        fontSize: 15,
+        padding: 10
     },
-    backBtn: {
-        alignItems: 'center',
-        bottom: 0,
-        justifyContent: 'center',
-        position: 'absolute',
-        top: 0,
-        width: 75,
-        backgroundColor: 'red',
-        right: 0
+    messageCell: {
+        marginTop: 5,
+        marginBottom: 5,
     },
-    controls: {
-        alignItems: 'center',
-        marginBottom: 30
+    messageCellText: {
+        fontSize: 15
     },
-    switchContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginBottom: 5
-    },
-    switch: {
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
-        paddingVertical: 10,
-        width: Dimensions.get('window').width / 4,
-    },
-    trash: {
-        height: 25,
-        width: 25,
-    },
-    textInput: {
-        marginTop: 2,
-        marginBottom: 2,
-        paddingLeft: 10,
-        fontSize: 17,
-        flex: 1,
-        backgroundColor: 'white',
-        borderWidth: 0,
+    avatar: {
         borderRadius: 4,
+        margin: 5,
+        width: 40,
+        height: 40
     },
+    contentView: {
+        borderRadius: 4,
+        padding: 4,
+        paddingHorizontal: 8,
+        overflow: 'hidden',
+        flex: 1,
+        margin: 5,
+        justifyContent: 'center'
+    },
+    endBlankBlock: {
+        margin: 5,
+        width: 50,
+        height: 40
+    }
 })
