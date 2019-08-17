@@ -27,7 +27,7 @@ export default class ChatPage extends Component {
 
     constructor(props) {
         super(props);
-        his.state = { flatlistHeight: 0 };
+        this.state = { flatlistHeight: 0 };
     }
 
     _onChange(event) {
